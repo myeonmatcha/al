@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hbd</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+  <style>
+    * {
+      transition: all 0.2s ease-in-out;
+    }
+
+    body {
+      background: #DCE35B; 
+      background: -webkit-linear-gradient(to right, #45B649, #DCE35B); 
+      background: linear-gradient(to right, #45B649, #DCE35B); 
+      display: grid;
+      place-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Background Cake */
+    .background-cake {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://clipart-library.com/images/8TA6xz89c.png') no-repeat center center;
+      background-size: cover;
+      z-index: 1; /* Ensure cake is behind the card */
+      opacity: 0.5; /* Adjust as needed */
+    }
+
+    .card {
+      background: #12192c;
+      border-radius: 30px;
+      height: 85vh;
+      width: 80vw;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2em;
+      overflow: hidden;
+      color: #DCE35B;
+      position: relative;
+      z-index: 2; /* Ensure card is above the cake */
+    }
+
+    .photo-placeholder {
+      width: 60%;
+      max-width: 50vw;
+      height: 40vh;
+      background: #f0f0f0;
+      border-radius: 30px;
+      margin-bottom: 1em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .photo-placeholder img {
+      width: 100%;
+      height: auto;
+      border-radius: 30px;
+      object-fit: cover;
+      animation: bounce 2s infinite;
+    }
+
+    .text {
+      padding: 1em;
+      text-align: center;
+      animation: fadeIn 3s ease-in;
+    }
+
+    .text h1 {
+      font-family: cursive;
+      font-size: 40px;
+      margin: 0;
+    }
+
+    .button {
+      background-color: #f39c12;
+      color: #fff;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      margin-top: 1em;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #e67e22;
+    }
+
+    .space {
+      height: 100px;
+    }
+
+    .credit a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .credit {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-30px);
+      }
+      60% {
+        transform: translateY(-15px);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Confetti effect */
+    .confetti {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .confetti div {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #ffeb3b;
+      opacity: 0.9;
+      animation: confetti 5s infinite;
+    }
+
+    @keyframes confetti {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    /* Balloon Styles */
+    .balloon {
+      position: absolute;
+      width: 60px;
+      height: 80px;
+      background-color: #ff5733;
+      border-radius: 50% 50% 50% 50%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      z-index: 2; /* Ensure balloons are above the confetti */
+    }
+
+    .balloon:after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: #ff5733;
+      transform: translateX(-50%);
+    }
+  </style>
+</head>
+<body>
+  <div class="background-cake"></div> <!-- Background Cake -->
+
+  <div class="confetti">
+    <!-- Add multiple confetti elements for a more festive effect -->
+    <div style="left: 10%; animation-delay: 0s;"></div>
+    <div style="left: 20%; animation-delay: 0.5s;"></div>
+    <div style="left: 30%; animation-delay: 1s;"></div>
+    <div style="left: 40%; animation-delay: 1.5s;"></div>
+    <div style="left: 50%; animation-delay: 2s;"></div>
+    <div style="left: 60%; animation-delay: 2.5s;"></div>
+    <div style="left: 70%; animation-delay: 3s;"></div>
+    <div style="left: 80%; animation-delay: 3.5s;"></div>
+    <div style="left: 90%; animation-delay: 4s;"></div>
+  </div>
+  
+  <!-- Balloons -->
+  <div class="balloon" style="top: 10%; left: 10%;" onclick="balloonClicked(this)"></div>
+  <div class="balloon" style="top: 20%; left: 30%;" onclick="balloonClicked(this)"></div>
+  <div class="balloon" style="top: 30%; left: 50%;" onclick="balloonClicked(this)"></div>
+  <div class="balloon" style="top: 40%; left: 70%;" onclick="balloonClicked(this)"></div>
+  <div class="balloon" style="top: 60%; left: 20%;" onclick="balloonClicked(this)"></div>
+  <div class="balloon" style="top: 70%; left: 40%;" onclick="balloonClicked(this)"></div>
+
+  <div class="card">
+    <div class="photo-placeholder">
+      <!-- Insert photo here -->
+      <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/456536342_927709192707629_4766657275661822162_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=0024fc&_nc_ohc=QXR25w8HiPEQ7kNvgE5TLxl&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QFWneZbxQXRR72C8edkbkz1FzpT0meluF7r-zw0FfjN6Q&oe=66FCA86C" alt="birthday">
+    </div>
+    <div class="text">
+      <h1>Happy Birthday!</h1>
+      <button class="button" onclick="changeColor()">tanginamo haha</button>
+    </div>
+    <div class="space"></div>
+  </div>
+  
+  <script>
+    function changeColor() {
+      const h1 = document.querySelector('.text h1');
+      h1.style.color = `hsl(${Math.random() * 360}, 100%, 75%)`;
+    }
+
+    function balloonClicked(balloon) {
+      // Change the balloon color on click
+      balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 75%)`;
+    }
+  </script>
+</body>
+</html>
